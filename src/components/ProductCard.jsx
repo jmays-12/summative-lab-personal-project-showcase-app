@@ -1,4 +1,10 @@
-function ProductCard({ product }) {
+import { Link } from "react-router-dom";
+import { getDiscountedPrice } from "../utils/pricing";
+import { useCartContext } from "../context/CartContext";
+
+export default function ProductCard({ product }) {
+    const { addToCart } = useCartContext();
+
     const onSale = product.salePercentage > 0;
 
     const finalPrice = getDiscountedPrice(
@@ -34,6 +40,13 @@ function ProductCard({ product }) {
                         <span>${product.price.toFixed(2)}</span>
                     )}
                 </div>
+
+                <button
+                    className="cart-button"
+                    onClick={() => addToCart(product)}
+                >
+                    Add to Cart
+                </button>
 
                 <Link className="product-button" to={`/products/${product.id}`}>
                     View Details

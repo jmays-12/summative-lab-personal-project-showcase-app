@@ -6,24 +6,37 @@ import React, {
     useCallback,
 } from "react";
 
-const BASE_URL = "http://localhost:6001/products";
+//make sure to add your .env file with your api!
+const API_URL = import.meta.env.VITE_API_URL;
 const ProductsContext = createContext(null);
 
 export function ProductsProvider({ children }) {
     const [products, setProducts] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState("");
 
     useEffect(() => {
-        fetch(BASE_URL)
-            .then((res) => res.json())
+        fetch(API_URL)
+            .then((res) => {
+                if (!res.ok) {
+                    throw new Error();
+                }
+
+                return res.json();
+            })
             .then((data) => {
                 setProducts(data);
+            })
+            .catch(() => {
+                setError("Couldn't load products.");
+            })
+            .finally(() => {
                 setIsLoading(false);
             });
     }, []);
 
     const addProduct = useCallback((newProductData) => {
-        return fetch(BASE_URL, {
+        return fetch(API_URL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newProductData),
@@ -36,7 +49,7 @@ export function ProductsProvider({ children }) {
     }, []);
 
     const updateProduct = useCallback((id, updates) => {
-        return fetch(`${BASE_URL}/${id}`, {
+        return fetch(`${API_URL}/${id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updates),
@@ -51,7 +64,7 @@ export function ProductsProvider({ children }) {
     }, []);
 
     const deleteProduct = useCallback((id) => {
-        return fetch(`${BASE_URL}/${id}`, { method: "DELETE" }).then(() => {
+        return fetch(`${API_URL}/${id}`, { method: "DELETE" }).then(() => {
             setProducts((prev) => prev.filter((p) => p.id !== id));
         });
     }, []);
@@ -59,6 +72,7 @@ export function ProductsProvider({ children }) {
     const value = {
         products,
         isLoading,
+        error,
         addProduct,
         updateProduct,
         deleteProduct,
@@ -73,9 +87,11 @@ export function ProductsProvider({ children }) {
 
 export function useProductsContext() {
     const context = useContext(ProductsContext);
+
     if (!context)
         throw new Error(
             "useProductsContext must be used within a ProductsProvider",
         );
+
     return context;
 }
