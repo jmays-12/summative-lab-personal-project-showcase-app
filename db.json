@@ -3,7 +3,7 @@
         {
             "id": "1",
             "name": "Clownfish",
-            "species": "Amphiprioninae",
+            "species": "Amphiprioninae ocellaris",
             "description": "Bright orange, hardy, great for beginners.",
             "image": "./assets/clownfish.png",
             "price": 24.99,
@@ -31,7 +31,7 @@
             "id": "4",
             "name": "Longhorn Cowfish",
             "species": "Lactoria cornuta",
-            "description": "Intolerant of other Longhorns. This fish requires a large tank and an expert caretaker for it to thrive.",
+            "description": "Should not be kept with other Longhorns. This fish requires a large tank and an expert caretaker for it to thrive.",
             "image": "./assets/longhorn-cowfish.webp",
             "price": 53.99,
             "salePercentage": 0
@@ -42,8 +42,8 @@
             "species": "Trygonorhina fasciata",
             "description": "Originating from the Coral Sea, this beautiful stingray requires an expert caretaker and an extra large tank.",
             "image": "./assets/stingray.webp",
-            "price": 1099.99,
-            "salePercentage": 12
+            "price": 1111.1,
+            "salePercentage": 10
         }
     ]
 }

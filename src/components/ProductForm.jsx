@@ -78,6 +78,7 @@ function ProductForm({ initialData, onSubmit, submitLabel }) {
             <input
                 id={imageId}
                 name="image"
+                type="url"
                 value={formData.image}
                 onChange={handleChange}
             />
