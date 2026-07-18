@@ -6,7 +6,7 @@ import { getDiscountedPrice } from "../utils/pricing";
 function ProductPage() {
     const { id } = useParams();
     const { products } = useProductsContext();
-    const product = products.find((p) => p.id === Number(id));
+    const product = products.find((p) => String(p.id) === id);
 
     if (!product) return <p>Product not found.</p>;
 
@@ -29,7 +29,7 @@ function ProductPage() {
                     </span>{" "}
                     <span className="sale-price">${finalPrice.toFixed(2)}</span>{" "}
                     <span className="sale-badge">
-                        -{product.salePercentage}%
+                        -{product.salePercentage}% off!
                     </span>
                 </p>
             ) : (

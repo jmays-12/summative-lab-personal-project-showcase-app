@@ -43,7 +43,7 @@
             "description": "Originating from the Coral Sea, this beautiful stingray requires an expert caretaker and an extra large tank.",
             "image": "./assets/stingray.webp",
             "price": 1099.99,
-            "salePercentage": 12
+            "salePercentage": 5
         }
     ]
 }
