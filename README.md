@@ -60,14 +60,14 @@ Products are stored as JSON during development. Each object looks like:
 
 ```json
 {
-    "id": "jmb1p0tU2kA",
-    "name": "Clownfish",
-    "species": "Amphiprioninae ocellaris",
-    "shortDescription": "Bright orange reef fish with a hardy personality.",
-    "extendedDescription": "Detailed care information...",
-    "image": "/assets/clownfish.png",
-    "price": 24.99,
-    "salePercentage": 0
+    "id": "7",
+    "name": "Mandarinfish",
+    "species": "Synchiropus splendidus",
+    "shortDescription": "A tiny reef fish with incredible colors and a reputation for being difficult to keep.",
+    "extendedDescription": "Mandarinfish are famous for their bright blue, orange, and green patterns. They spend most of their time picking tiny organisms from live rock and sand, so they do best in mature reef tanks with plenty of natural food available. They are peaceful fish, but they can be picky eaters and are best kept by experienced aquarium owners.",
+    "image": "/assets/mandarinfish.png",
+    "price": 89.99,
+    "salePercentage": 5
 }
 ```
 
