@@ -1,71 +1,62 @@
 # The Saltwater Source
 
-A React-based saltwater aquarium storefront Single Page Application built for browsing marine livestock, viewing detailed species information, managing a shopping cart, and maintaining products through an admin portal.
-
-The project focuses on creating a modern reef aquarium shopping experience with a dark ocean-inspired UI, responsive product cards, detailed product pages, and simple product management.
+A saltwater aquarium storefront SPA built with React. Browse marine livestock, read up on individual species, manage a cart, and handle inventory through an admin portal — all wrapped in a dark, ocean-inspired UI.
 
 ## Features
 
-### Customer Experience
+**Shopping**
 
-- Browse available saltwater livestock
-- Search/filter products
-- View individual product details
-- Fish/product display cards currently support:
-    - Common name
-    - Scientific name
-    - Short description
-    - Extended description & care information
-    - Pricing and discounts
-- Add products to cart
-- Adjust cart quantities
-- Remove items from cart
-- View order summary
+- Browse and search the full livestock catalog
+- Product cards show common name, scientific name, short description, and pricing
+- Detail pages include extended care notes (tank requirements, compatibility, difficulty, habitat)
+- Sale pricing with discount badges
+- Add to cart, adjust quantities, remove items, view order summary with tax and shipping
 
-### Product Catalog
+**Admin**
 
-Products include:
-
-- Common names
-- Scientific species names
-- Short descriptions for product cards
-- Extended descriptions for product detail pages
-- Images
-- Pricing & sale percentage
-
-Example product information includes care notes such as:
-
-- Tank requirements
-- Compatibility
-- Difficulty level
-- Habitat information
-
-### Admin Portal
-
-The admin section allows management of inventory:
-
-- Add new fish/products
-- Edit existing products
-- Delete products
-
-Products use string IDs to remain compatible with generated database identifiers.
+- Add, edit, and delete products through the admin portal
 
 ---
 
 ## Tech Stack
 
-### Frontend
+- React + React Router (client-side routing)
+- Context API (`ProductsContext`, `CartContext`)
+- CSS custom properties, Grid, and Flexbox
+- Vite
 
-- React & React Router
-- Context API for shared state management
-- CSS custom properties for theming
-- Responsive CSS Grid and Flexbox layouts
+---
 
-### Data
+## Project Structure
 
-Product data is stored in JSON format during development.
+```
+src/
+├── components/
+│   ├── ProductCard.jsx
+│   ├── ProductForm.jsx
+│   └── NavBar.jsx
+├── context/
+│   ├── ProductsContext.jsx
+│   └── CartContext.jsx
+├── pages/
+│   ├── HomePage.jsx
+│   ├── ShopPage.jsx
+│   ├── ProductPage.jsx
+│   ├── CartPage.jsx
+│   └── AdminPortalPage.jsx
+├── hooks/
+│   └── useSearch.js
+├── utils/
+│   └── pricing.js
+└── assets/
+    └── (product images)
+```
 
-Example structure:
+---
+
+## Product Data
+
+Products are stored as JSON during development. Each object looks like:
 
 ```json
 {
@@ -82,117 +73,38 @@ Example structure:
 
 ---
 
-## Project Structure
-
-Example structure:
-
-```
-src/
-├── components/
-│   ├── ProductCard.jsx
-│   ├── ProductForm.jsx
-│   └── Navbar.jsx
-│
-├── context/
-│   ├── ProductsContext.jsx
-│   └── CartContext.jsx
-│
-├── pages/
-│   ├── HomePage.jsx
-│   ├── ShopPage.jsx
-│   ├── ProductPage.jsx
-│   ├── CartPage.jsx
-│   └── AdminPortalPage.jsx
-│
-├── utils/
-│   └── pricing.js
-│
-└── assets/
-    └── product images
-```
-
----
-
-## Design
-
-The application uses an ocean-inspired theme:
-
-- Deep navy backgrounds
-- Cyan accent colors
-- Glass-like navigation elements
-- Rounded product cards
-- Soft shadows and hover animations
-
-The UI uses reusable styling patterns:
-
-- Product card components
-- Product detail layouts
-- Shared buttons
-- Consistent pricing displays
-
----
-
 ## Running Locally
-
-Clone the repository:
 
 ```bash
 git clone <repository-url>
-```
-
-Install dependencies:
-
-```bash
 npm install
-```
-
-Start the development server:
-
-```bash
 npm run dev
 ```
 
-The application will run locally through the Vite development server.
+You'll also need a `.env` file with your API URL:
+
+```
+VITE_API_URL=http://localhost:3000/products
+```
 
 ---
 
-## Product Data Management
+## Testing
 
-Products currently use JSON-based storage for development.
+```bash
+npm test
+```
 
-To add a new product:
-
-1. Add a new object to the products collection
-2. Provide:
-    - Unique string ID
-    - Product name
-    - Species
-    - Description fields
-    - Image path
-    - Price
-    - Sale percentage
-
-3. Ensure the image exists in the assets folder
+Tests cover the custom `useSearch` hook, cart state via `CartContext`, all four CRUD operations through `ProductsContext`, and client-side routing across all pages.
 
 ---
 
-## Future Improvements
+## What's Missing / Future Ideas
 
-Potential additions:
-
-- Persistent database storage
-- User authentication
-- Customer accounts
-- Checkout/payment flow
+- Real backend and persistent storage
+- Auth and customer accounts
+- Checkout and payment flow
 - Order history
-- Inventory tracking
-- Fish compatibility recommendations
-- Tank setup recommendations
-- Favorites/wishlist functionality
+- Fish compatibility checker
+- Wishlist / favorites
 - Product reviews
-
----
-
-## Notes
-
-This project is currently focused on the storefront experience and frontend architecture. The catalog, cart, and admin tools provide a foundation that could later be connected to a production backend and real inventory system.
