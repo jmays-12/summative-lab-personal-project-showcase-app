@@ -8,7 +8,7 @@
             "extendedDescription": "The ocellaris clownfish is one of the most popular aquarium fish for a reason. They're colorful, active, and usually adapt well to life in a home reef tank. They can live peacefully with many smaller reef species and are often kept with anemones, although an anemone is not required.\n\nCare Notes:\n• Minimum tank size: 20 gallons\n• Temperature: 75-82°F\n• Diet: Omnivore\n• Difficulty: Beginner\n\nAvoid keeping them with large aggressive fish that may see them as food.",
             "image": "/assets/clownfish2.jpg",
             "price": 24.99,
-            "salePercentage": 0
+            "salePercentage": 5
         },
         {
             "id": "2",
@@ -58,7 +58,7 @@
             "extendedDescription": "Leafy seadragons are one of the strangest looking animals in the ocean, using their leaf shaped fins to blend into kelp and seaweed. They are peaceful but extremely delicate, making them a poor choice for most home aquariums. They need excellent water quality, a calm environment, and a steady supply of small foods like mysis shrimp.",
             "image": "/assets/leafy-seadragon.png",
             "price": 799.99,
-            "salePercentage": 12
+            "salePercentage": 0
         },
         {
             "id": "7",
@@ -70,6 +70,5 @@
             "price": 89.99,
             "salePercentage": 5
         }
-    ],
-    "$schema": "./node_modules/json-server/schema.json"
+    ]
 }

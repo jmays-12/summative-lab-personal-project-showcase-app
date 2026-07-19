@@ -11,7 +11,7 @@ function ProductPage() {
 
     const product = products.find((p) => String(p.id) === id);
 
-    if (!product) return <p className="loading">Loading...</p>;
+    if (!product) return <div className="loading">Loading...</div>;
 
     const onSale = product.salePercentage > 0;
 

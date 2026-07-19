@@ -1,8 +1,10 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
 
+import { useProductsContext } from "../context/ProductsContext";
+
 function HomePage() {
+    const { products } = useProductsContext();
     return (
         <>
             <section className="hero">
@@ -13,6 +15,19 @@ function HomePage() {
                     you need for your next saltwater setup.
                 </p>
 
+                <div className="featured-species">
+                    {products.slice(0, 3).map((product) => (
+                        <Link
+                            key={product.id}
+                            to={`/products/${product.id}`}
+                            className="featured-species-item"
+                        >
+                            <div className="featured-species-img-wrap">
+                                <img src={product.image} alt={product.name} />
+                            </div>
+                        </Link>
+                    ))}
+                </div>
                 <Link to="/shop">Browse Fish</Link>
             </section>
 
