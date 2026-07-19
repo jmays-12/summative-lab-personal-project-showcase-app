@@ -7,6 +7,7 @@ function AdminPortalPage() {
         useProductsContext();
 
     const [editingId, setEditingId] = useState("");
+    const [confirmingDelete, setConfirmingDelete] = useState(false);
 
     const editingProduct = products.find((p) => p.id === editingId);
 
@@ -20,8 +21,18 @@ function AdminPortalPage() {
     }
 
     function handleDelete() {
+        if (!confirmingDelete) {
+            setConfirmingDelete(true);
+            return;
+        }
         deleteProduct(editingProduct.id);
         setEditingId("");
+        setConfirmingDelete(false);
+    }
+
+    function handleSelectChange(e) {
+        setEditingId(e.target.value);
+        setConfirmingDelete(false);
     }
 
     return (
@@ -30,19 +41,14 @@ function AdminPortalPage() {
 
             <section className="admin-section">
                 <h2>Add New Fish</h2>
-
                 <ProductForm onSubmit={handleAdd} submitLabel="Add Fish" />
             </section>
 
             <section className="admin-section">
                 <h2>Edit Existing Fish</h2>
 
-                <select
-                    value={editingId}
-                    onChange={(e) => setEditingId(e.target.value)}
-                >
+                <select value={editingId} onChange={handleSelectChange}>
                     <option value="">Select a fish...</option>
-
                     {products.map((p) => (
                         <option key={p.id} value={p.id}>
                             {p.name}
@@ -63,8 +69,16 @@ function AdminPortalPage() {
                             className="delete-button"
                             onClick={handleDelete}
                         >
-                            Delete Fish
+                            {confirmingDelete
+                                ? "Click again to confirm delete"
+                                : "Delete Fish"}
                         </button>
+
+                        {confirmingDelete && (
+                            <button onClick={() => setConfirmingDelete(false)}>
+                                Cancel
+                            </button>
+                        )}
                     </div>
                 )}
             </section>

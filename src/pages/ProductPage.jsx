@@ -1,20 +1,28 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useProductsContext } from "../context/ProductsContext";
 import { useCartContext } from "../context/CartContext";
 import { getDiscountedPrice } from "../utils/pricing";
 
 function ProductPage() {
     const { id } = useParams();
-    const { products } = useProductsContext();
+    const navigate = useNavigate();
+    const { products, isLoading } = useProductsContext();
     const { addToCart } = useCartContext();
 
     const product = products.find((p) => String(p.id) === id);
 
-    if (!product) return <div className="loading">Loading...</div>;
+    if (isLoading) return <div className="loading">Loading...</div>;
+
+    if (!product)
+        return (
+            <div className="loading">
+                Product not found.{" "}
+                <button onClick={() => navigate("/shop")}>Back to shop</button>
+            </div>
+        );
 
     const onSale = product.salePercentage > 0;
-
     const finalPrice = getDiscountedPrice(
         product.price,
         product.salePercentage,
@@ -47,11 +55,9 @@ function ProductPage() {
                                     <span className="original-price">
                                         ${product.price.toFixed(2)}
                                     </span>
-
                                     <span className="sale-price">
                                         ${finalPrice.toFixed(2)} each
                                     </span>
-
                                     <span className="sale-badge">
                                         {product.salePercentage}% off!
                                     </span>

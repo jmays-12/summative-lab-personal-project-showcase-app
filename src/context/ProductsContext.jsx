@@ -6,7 +6,6 @@ import React, {
     useCallback,
 } from "react";
 
-//make sure to add your .env file with your api!
 const API_URL = import.meta.env.VITE_API_URL;
 const ProductsContext = createContext(null);
 
@@ -18,21 +17,12 @@ export function ProductsProvider({ children }) {
     useEffect(() => {
         fetch(API_URL)
             .then((res) => {
-                if (!res.ok) {
-                    throw new Error();
-                }
-
+                if (!res.ok) throw new Error();
                 return res.json();
             })
-            .then((data) => {
-                setProducts(data);
-            })
-            .catch(() => {
-                setError("Couldn't load products.");
-            })
-            .finally(() => {
-                setIsLoading(false);
-            });
+            .then((data) => setProducts(data))
+            .catch(() => setError("Couldn't load products."))
+            .finally(() => setIsLoading(false));
     }, []);
 
     const addProduct = useCallback((newProductData) => {
@@ -41,7 +31,10 @@ export function ProductsProvider({ children }) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newProductData),
         })
-            .then((res) => res.json())
+            .then((res) => {
+                if (!res.ok) throw new Error("Failed to add product");
+                return res.json();
+            })
             .then((newProduct) => {
                 setProducts((prev) => [...prev, newProduct]);
                 return newProduct;
@@ -54,7 +47,10 @@ export function ProductsProvider({ children }) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(updates),
         })
-            .then((res) => res.json())
+            .then((res) => {
+                if (!res.ok) throw new Error("Failed to update product");
+                return res.json();
+            })
             .then((updated) => {
                 setProducts((prev) =>
                     prev.map((p) => (p.id === updated.id ? updated : p)),
@@ -64,22 +60,23 @@ export function ProductsProvider({ children }) {
     }, []);
 
     const deleteProduct = useCallback((id) => {
-        return fetch(`${API_URL}/${id}`, { method: "DELETE" }).then(() => {
+        return fetch(`${API_URL}/${id}`, { method: "DELETE" }).then((res) => {
+            if (!res.ok) throw new Error("Failed to delete product");
             setProducts((prev) => prev.filter((p) => p.id !== id));
         });
     }, []);
 
-    const value = {
-        products,
-        isLoading,
-        error,
-        addProduct,
-        updateProduct,
-        deleteProduct,
-    };
-
     return (
-        <ProductsContext.Provider value={value}>
+        <ProductsContext.Provider
+            value={{
+                products,
+                isLoading,
+                error,
+                addProduct,
+                updateProduct,
+                deleteProduct,
+            }}
+        >
             {children}
         </ProductsContext.Provider>
     );
@@ -87,11 +84,9 @@ export function ProductsProvider({ children }) {
 
 export function useProductsContext() {
     const context = useContext(ProductsContext);
-
     if (!context)
         throw new Error(
             "useProductsContext must be used within a ProductsProvider",
         );
-
     return context;
 }

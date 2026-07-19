@@ -1,5 +1,19 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useCartContext } from "../context/CartContext";
+
+function EmptyCart() {
+    return (
+        <div className="cart-empty">
+            <div className="cart-empty-icon">🐠</div>
+            <h2>Your cart is empty</h2>
+            <p>Looks like you haven't added any fish yet.</p>
+            <Link to="/shop" className="cart-empty-button">
+                Browse Fish
+            </Link>
+        </div>
+    );
+}
 
 function CartPage() {
     const {
@@ -17,7 +31,6 @@ function CartPage() {
 
     function handleRemove(id) {
         setRemovingId(id);
-
         setTimeout(() => {
             removeFromCart(id);
             setRemovingId(null);
@@ -29,7 +42,7 @@ function CartPage() {
             <h1>Your Cart</h1>
 
             {cart.length === 0 ? (
-                <p>Your cart is empty.</p>
+                <EmptyCart />
             ) : (
                 <>
                     <ul className="cart-items">
@@ -128,16 +141,23 @@ function CartPage() {
 
                     <div className="cart-summary">
                         <div className="summary-row">
-                            <span>Subtotal:</span>
+                            <span>Subtotal</span>
                             <span>${subtotal.toFixed(2)}</span>
-
-                            <span>Tax:</span>
+                        </div>
+                        <div className="summary-row">
+                            <span>Tax</span>
                             <span>${tax.toFixed(2)}</span>
-
-                            <span>Shipping:</span>
-                            <span>${shipping.toFixed(2)}</span>
-
-                            <span>Total:</span>
+                        </div>
+                        <div className="summary-row">
+                            <span>Shipping</span>
+                            <span>
+                                {shipping === 0
+                                    ? "Free"
+                                    : `$${shipping.toFixed(2)}`}
+                            </span>
+                        </div>
+                        <div className="summary-total">
+                            <span>Total</span>
                             <span>${total.toFixed(2)}</span>
                         </div>
                     </div>
