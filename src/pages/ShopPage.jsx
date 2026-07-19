@@ -11,26 +11,28 @@ function ShopPage() {
         ["name"],
     );
 
-    if (isLoading) return <p>Loading products...</p>;
+    if (isLoading) return <p className="loading">Loading...</p>;
 
     if (error) return <p>{error}</p>;
 
     return (
         <main className="shop-page">
-            <h1>Shop</h1>
+            <div className="shop-header">
+                <h1>Shop</h1>
 
-            <div className="search-container">
-                <input
-                    ref={inputRef}
-                    className="search-input"
-                    type="text"
-                    placeholder="Search fish..."
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <span className="search-results">
-                    {filteredItems.length} of {products.length}
-                </span>
+                <div className="search-container">
+                    <input
+                        ref={inputRef}
+                        className="search-input"
+                        type="text"
+                        placeholder="Search fish..."
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                    <span className="search-results">
+                        {filteredItems.length} of {products.length}
+                    </span>
+                </div>
             </div>
 
             {filteredItems.length === 0 ? (

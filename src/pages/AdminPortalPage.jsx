@@ -5,9 +5,10 @@ import ProductForm from "../components/ProductForm";
 function AdminPortalPage() {
     const { products, addProduct, updateProduct, deleteProduct } =
         useProductsContext();
+
     const [editingId, setEditingId] = useState("");
 
-    const editingProduct = products.find((p) => p.id === Number(editingId));
+    const editingProduct = products.find((p) => p.id === editingId);
 
     function handleAdd(formData) {
         addProduct(formData);
@@ -27,18 +28,21 @@ function AdminPortalPage() {
         <main className="admin-portal">
             <h1>Admin Portal</h1>
 
-            <section>
+            <section className="admin-section">
                 <h2>Add New Fish</h2>
-                <ProductForm onSubmit={handleAdd} submitLabel="Submit" />
+
+                <ProductForm onSubmit={handleAdd} submitLabel="Add Fish" />
             </section>
 
-            <section>
-                <h2>Edit or Remove Existing Fish</h2>
+            <section className="admin-section">
+                <h2>Edit Existing Fish</h2>
+
                 <select
                     value={editingId}
                     onChange={(e) => setEditingId(e.target.value)}
                 >
                     <option value="">Select a fish...</option>
+
                     {products.map((p) => (
                         <option key={p.id} value={p.id}>
                             {p.name}
@@ -47,14 +51,20 @@ function AdminPortalPage() {
                 </select>
 
                 {editingProduct && (
-                    <div>
+                    <div className="admin-edit-area">
                         <ProductForm
                             key={editingProduct.id}
                             initialData={editingProduct}
                             onSubmit={handleUpdate}
                             submitLabel="Save Changes"
                         />
-                        <button onClick={handleDelete}>Delete Fish</button>
+
+                        <button
+                            className="delete-button"
+                            onClick={handleDelete}
+                        >
+                            Delete Fish
+                        </button>
                     </div>
                 )}
             </section>

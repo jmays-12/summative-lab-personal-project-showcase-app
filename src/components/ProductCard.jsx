@@ -19,26 +19,30 @@ export default function ProductCard({ product }) {
             </div>
 
             <div className="product-info">
-                <h3>{product.name}</h3>
+                <h3 className="product-title">{product.name}</h3>
 
-                <p className="species">{product.species}</p>
+                <p className="product-species">{product.species}</p>
 
-                <p>{product.description}</p>
+                <p className="product-card-description">
+                    {product.shortDescription}
+                </p>
 
-                <div className="price">
-                    {onSale ? (
-                        <>
-                            <span className="original-price">
-                                ${product.price.toFixed(2)}
-                            </span>
+                <div className="product-footer">
+                    <div className="product-price">
+                        {onSale ? (
+                            <>
+                                <span className="original-price">
+                                    ${product.price.toFixed(2)}
+                                </span>
 
-                            <span className="sale-price">
-                                ${finalPrice.toFixed(2)}
-                            </span>
-                        </>
-                    ) : (
-                        <span>${product.price.toFixed(2)}</span>
-                    )}
+                                <span className="sale-price">
+                                    ${finalPrice.toFixed(2)} each
+                                </span>
+                            </>
+                        ) : (
+                            <span>${product.price.toFixed(2)} each</span>
+                        )}
+                    </div>
                 </div>
 
                 <button

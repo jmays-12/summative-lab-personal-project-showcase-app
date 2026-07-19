@@ -2,19 +2,21 @@
     "products": [
         {
             "id": "1",
-            "name": "Clownfish",
-            "species": "Amphiprioninae ocellaris",
-            "description": "Bright orange, hardy, great for beginners.",
-            "image": "./assets/clownfish.png",
+            "name": "Ocellaris Clownfish",
+            "species": "Amphiprion ocellaris",
+            "shortDescription": "A hardy orange reef fish that's a great choice for newer saltwater keepers.",
+            "extendedDescription": "The ocellaris clownfish is one of the most popular aquarium fish for a reason. They're colorful, active, and usually adapt well to life in a home reef tank. They can live peacefully with many smaller reef species and are often kept with anemones, although an anemone is not required.\n\nCare Notes:\n• Minimum tank size: 20 gallons\n• Temperature: 75-82°F\n• Diet: Omnivore\n• Difficulty: Beginner\n\nAvoid keeping them with large aggressive fish that may see them as food.",
+            "image": "/assets/clownfish2.jpg",
             "price": 24.99,
             "salePercentage": 0
         },
         {
             "id": "2",
-            "name": "Blue Tang",
+            "name": "Blue Hippo Tang",
             "species": "Paracanthurus hepatus",
-            "description": "Vivid blue reef fish, needs a large tank.",
-            "image": "./assets/blue-tang.webp",
+            "shortDescription": "A bright blue reef favorite that needs plenty of swimming space.",
+            "extendedDescription": "The blue hippo tang is famous for its bright blue color and playful personality. While they are a popular choice for reef tanks, they are not ideal for small aquariums because they grow larger and spend a lot of time swimming. A spacious tank and good water quality are important for keeping them healthy.\n\nCare Notes:\n• Minimum tank size: 100 gallons recommended\n• Temperature: 72-78°F\n• Diet: Herbivore (mostly algae-based)\n• Difficulty: Intermediate\n\nThey are generally peaceful but should have plenty of room to avoid stress.",
+            "image": "/assets/blue-tang.webp",
             "price": 49.99,
             "salePercentage": 0
         },
@@ -22,8 +24,9 @@
             "id": "3",
             "name": "Dwarf Seahorse",
             "species": "Hippocampus zosterae",
-            "description": "Difficult to maintain but fascinating. Requires a small aquarium with no other species.",
-            "image": "./assets/seahorse.webp",
+            "shortDescription": "A tiny seahorse with unique behavior, but best suited for experienced keepers.",
+            "extendedDescription": "Dwarf seahorses are one of the smallest seahorse species available in the aquarium trade. Their small size and slow movement make them interesting to watch, but they require more specialized care than most fish. They do best in species-only tanks with calm water and a steady food supply.\n\nCare Notes:\n• Minimum tank size: 5-10 gallons\n• Temperature: 72-78°F\n• Diet: Small live foods such as baby brine shrimp\n• Difficulty: Advanced\n\nAvoid keeping them with fast or aggressive tank mates that can outcompete them for food.",
+            "image": "/assets/seahorse.webp",
             "price": 34.99,
             "salePercentage": 15
         },
@@ -31,19 +34,42 @@
             "id": "4",
             "name": "Longhorn Cowfish",
             "species": "Lactoria cornuta",
-            "description": "Should not be kept with other Longhorns. This fish requires a large tank and an expert caretaker for it to thrive.",
-            "image": "./assets/longhorn-cowfish.webp",
+            "shortDescription": "A unique boxfish with horns and a big personality, but not for beginner tanks.",
+            "extendedDescription": "The longhorn cowfish is one of the more unusual looking fish in the hobby, with its boxy shape and distinctive horns. They are peaceful but require careful tank planning because they can become stressed easily and may release toxins if severely threatened or injured.\n\nCare Notes:\n• Minimum tank size: 100 gallons recommended\n• Temperature: 72-78°F\n• Diet: Omnivore\n• Difficulty: Advanced\n\nGive them plenty of open swimming space and avoid housing them with aggressive fish.",
+            "image": "/assets/longhorn-cowfish.webp",
             "price": 53.99,
             "salePercentage": 0
         },
         {
             "id": "5",
-            "name": "Fiddler Stingray",
-            "species": "Trygonorhina fasciata",
-            "description": "Originating from the Coral Sea, this beautiful stingray requires an expert caretaker and an extra large tank.",
-            "image": "./assets/stingray.webp",
+            "name": "Fiddler Ray",
+            "species": "Trygonorrhina fasciata",
+            "shortDescription": "A striking bottom dwelling ray that requires a very large, specialized aquarium.",
+            "extendedDescription": "The fiddler ray is a beautiful bottom-dweller known for its unique markings and calm nature. They are not a typical home aquarium fish and need a lot of floor space, excellent filtration, and an experienced caretaker. Their care requirements make them better suited for advanced marine setups.\n\nCare Notes:\n• Minimum tank size: 180+ gallons recommended\n• Temperature: 68-77°F\n• Diet: Carnivore\n• Difficulty: Expert\n\nProvide a soft sandy substrate and avoid sharp decorations that could damage their underside.",
+            "image": "/assets/stingray.webp",
             "price": 1111.1,
             "salePercentage": 10
+        },
+        {
+            "id": "6",
+            "name": "Leafy Seadragon",
+            "species": "Phycodurus eques",
+            "shortDescription": "A bizarre Australian relative of the seahorse covered in leaflike camouflage.",
+            "extendedDescription": "Leafy seadragons are one of the strangest looking animals in the ocean, using their leaf shaped fins to blend into kelp and seaweed. They are peaceful but extremely delicate, making them a poor choice for most home aquariums. They need excellent water quality, a calm environment, and a steady supply of small foods like mysis shrimp.",
+            "image": "/assets/leafy-seadragon.png",
+            "price": 799.99,
+            "salePercentage": 12
+        },
+        {
+            "id": "7",
+            "name": "Mandarinfish",
+            "species": "Synchiropus splendidus",
+            "shortDescription": "A tiny reef fish with incredible colors and a reputation for being difficult to keep.",
+            "extendedDescription": "Mandarinfish are famous for their bright blue, orange, and green patterns. They spend most of their time picking tiny organisms from live rock and sand, so they do best in mature reef tanks with plenty of natural food available. They are peaceful fish, but they can be picky eaters and are best kept by experienced aquarium owners.",
+            "image": "/assets/mandarinfish.png",
+            "price": 89.99,
+            "salePercentage": 5
         }
-    ]
+    ],
+    "$schema": "./node_modules/json-server/schema.json"
 }

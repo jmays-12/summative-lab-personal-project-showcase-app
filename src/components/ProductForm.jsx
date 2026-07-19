@@ -5,7 +5,8 @@ function ProductForm({ initialData, onSubmit, submitLabel }) {
         initialData || {
             name: "",
             species: "",
-            description: "",
+            shortDescription: "",
+            extendedDescription: "",
             image: "",
             price: "",
             salePercentage: 0,
@@ -15,7 +16,8 @@ function ProductForm({ initialData, onSubmit, submitLabel }) {
 
     const nameId = useId();
     const speciesId = useId();
-    const descriptionId = useId();
+    const shortDescriptionId = useId();
+    const extendedDescriptionId = useId();
     const imageId = useId();
     const priceId = useId();
     const saleId = useId();
@@ -66,11 +68,18 @@ function ProductForm({ initialData, onSubmit, submitLabel }) {
                 onChange={handleChange}
             />
 
-            <label htmlFor={descriptionId}>Description</label>
+            <label htmlFor={shortDescriptionId}>Short Description</label>
             <input
-                id={descriptionId}
-                name="description"
-                value={formData.description}
+                id={shortDescriptionId}
+                name="shortDescription"
+                value={formData.shortDescription}
+                onChange={handleChange}
+            />
+            <label htmlFor={extendedDescriptionId}>Extended Description</label>
+            <input
+                id={extendedDescriptionId}
+                name="extendedDescription"
+                value={formData.extendedDescription}
                 onChange={handleChange}
             />
 

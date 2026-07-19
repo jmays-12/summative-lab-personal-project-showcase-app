@@ -11,7 +11,7 @@ function ProductPage() {
 
     const product = products.find((p) => String(p.id) === id);
 
-    if (!product) return <p>Product not found.</p>;
+    if (!product) return <p className="loading">Loading...</p>;
 
     const onSale = product.salePercentage > 0;
 
@@ -20,35 +20,56 @@ function ProductPage() {
         product.salePercentage,
     );
 
-    function handleAddToCart() {
-        addToCart(product);
-    }
-
     return (
         <main className="product-page">
-            <img src={product.image} alt={product.name} />
+            <div className="product-page-card">
+                <div className="product-page-image-container">
+                    <img
+                        className="product-page-image"
+                        src={product.image}
+                        alt={product.name}
+                    />
+                </div>
 
-            <h1>{product.name}</h1>
+                <div className="product-page-info">
+                    <h1 className="product-page-title">{product.name}</h1>
 
-            <p className="species">{product.species}</p>
+                    <p className="product-page-species">{product.species}</p>
 
-            <p>{product.description}</p>
+                    <p className="product-page-description">
+                        {product.extendedDescription}
+                    </p>
 
-            {onSale ? (
-                <p>
-                    <span className="original-price">
-                        ${product.price.toFixed(2)}
-                    </span>{" "}
-                    <span className="sale-price">${finalPrice.toFixed(2)}</span>{" "}
-                    <span className="sale-badge">
-                        -{product.salePercentage}% off!
-                    </span>
-                </p>
-            ) : (
-                <p>Price: ${product.price.toFixed(2)}</p>
-            )}
+                    <div className="product-page-footer">
+                        <div className="product-page-price">
+                            {onSale ? (
+                                <>
+                                    <span className="original-price">
+                                        ${product.price.toFixed(2)}
+                                    </span>
 
-            <button onClick={handleAddToCart}>Add to Cart</button>
+                                    <span className="sale-price">
+                                        ${finalPrice.toFixed(2)} each
+                                    </span>
+
+                                    <span className="sale-badge">
+                                        {product.salePercentage}% off!
+                                    </span>
+                                </>
+                            ) : (
+                                <span>${product.price.toFixed(2)} each</span>
+                            )}
+                        </div>
+
+                        <button
+                            className="cart-button"
+                            onClick={() => addToCart(product)}
+                        >
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
         </main>
     );
 }
