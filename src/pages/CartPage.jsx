@@ -152,7 +152,7 @@ function CartPage() {
                             <span>Shipping</span>
                             <span>
                                 {shipping === 0
-                                    ? "Free"
+                                    ? "Free!"
                                     : `$${shipping.toFixed(2)}`}
                             </span>
                         </div>
